@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="./dist/bundle.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="icon" href="./dist/images/App_Icon.png">
+</head>
+<body>
+<img src="./dist/images/logo-1.png" id="logo" alt="logo_ClashRoyale">
+<header class="mdc-top-app-bar mdc-top-app-bar--short nav">
+    <div class="mdc-top-app-bar__row">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+            <a href="#" class="material-icons mdc-top-app-bar__navigation-icon">menu</a>
+            <span class="mdc-top-app-bar__title">Clash Royale</span>
+        </section>
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+            <a href="#" class="material-icons mdc-top-app-bar__action-item" aria-label="Bookmark this page"
+               alt="Bookmark this page">bookmark</a>
+        </section>
+    </div>
+</header>
+<main>
+    <div>
+        <div id="inputs">
+            <div class="mdc-text-field">
+                <input type="text" id="clanName" class="mdc-text-field__input">
+                <label class="mdc-floating-label" for="clanName">Nombre del Clan</label>
+                <div class="mdc-line-ripple"></div>
+            </div>
+            <div class="mdc-text-field">
+                <input type="text" id="clanTag" class="mdc-text-field__input">
+                <label class="mdc-floating-label" for="clanTag">Tag del Clan</label>
+                <div class="mdc-line-ripple"></div>
+            </div>
+            <div class="mdc-select demo-width-class">
+                <input type="hidden" name="enhanced-select">
+                <i class="mdc-select__dropdown-icon"></i>
+                <div class="mdc-select__selected-text"></div>
+                <div class="mdc-select__menu mdc-menu mdc-menu-surface demo-width-class">
+                    <ul class="mdc-list"></ul>
+                </div>
+                <span class="mdc-floating-label">País</span>
+                <div class="mdc-line-ripple"></div>
+            </div>
+            <button class="mdc-button" id="search">
+                <span class="mdc-button__label">Buscar</span>
+            </button>
+        </div>
+    </div>
+    <div id="list"></div>
+</main>
+<script type="module">
+    import {getSpanishClans, getClanByName, getClanByTag} from "./assets/src/service/clanService.js"
+    import {getLocations} from "./assets/src/service/locationService.js"
+    import {headTable} from "./assets/src/utils/constants.js"
+
+    let list = document.getElementById('list')
+    let inputName = document.getElementById('clanName')
+    let inputTag = document.getElementById('clanTag')
+    let inputs = document.querySelectorAll('input')
+    let selects = document.querySelector('.mdc-list')
+
+
+
+    (async function () {
+        let locations = await getLocations()
+        selects.innerHTML += '<li class="mdc-list-item mdc-list-item--selected" data-value="" aria-selected="true"></li>'
+        locations.forEach(function(location){
+            selects.innerHTML += '<li class="mdc-list-item" data-value="grains">'+ location.name +'</li>'
+        })
+        inputs.forEach(function (input) {
+            input.addEventListener("input", function () {
+                document.getElementById('search').disabled = !!(inputName.value && inputTag.value)
+            })
+        })
+        let clans = await getSpanishClans()
+        inputs.innerHTML = headTable
+        drawTable(clans)
+
+
+    })()
+    document.getElementById('search').addEventListener('click', async function () {
+        if (inputName.value && !inputTag.value) {
+            let clanName = await getClanByName()
+            clanName.forEach(clan => {
+                document.querySelector('#list').innerHTML = headTable
+            })
+        } else if (!inputName.value && inputTag.value) {
+            let clanTag = await getClanByTag()
+            console.log(clanTag)
+        } else alert("Introduce un valor")
+
+    })
+
+    function drawTable(clans){
+        let table = headTable;
+        list.innerHTML = headTable
+        clans.forEach(function (clan) {
+            table += '<tr>'
+            table += '<td><button id="' + clan.name + '">'
+            table += '<img src="./dist/images/Clash%20Royale.png" alt="CrownIcon" width="25px" height="25px">'
+            table += '</button>' + clan.name + '</td>'
+            table += '<td>' + clan.tag + '</td>'
+            table += '<td>' + clan.nMember + '</td>'
+            table += '<td>' + clan.chestLvl + '</td>'
+            table += '<td>' + clan.score + '</td>'
+            table += '<td>' + clan.country + '</td>'
+            table += '</tr>'
+        })
+        list.innerHTML = table
+    }
+</script>
+<script src="./dist/bundle.js" async></script>
+</body>
+</html>

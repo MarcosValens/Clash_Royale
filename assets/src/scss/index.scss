@@ -1,0 +1,114 @@
+$mdc-theme-primary: #488bf4;
+@import "@material/textfield/mdc-text-field";
+@import "@material/top-app-bar/mdc-top-app-bar";
+@import "@material/button/mdc-button";
+@import "@material/list/mdc-list";
+@import "@material/menu-surface/mdc-menu-surface";
+@import "@material/menu/mdc-menu";
+@import "@material/select/mdc-select";
+@font-face {
+  font-family: clashFont;
+  src: url('../../../dist/fonts/Supercell-magic-webfont.generated.woff');
+}
+
+.demo-width-class {
+  width: 400px;
+}
+
+
+#logo {
+  position: relative;
+  left: 40%;
+  z-index: 5;
+}
+
+main {
+  div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 3vh;
+
+    #inputs {
+      margin: 1vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      div {
+        margin: 0 1vw;
+      }
+    }
+  }
+
+
+  #list {
+    font-family: clashFont, serif;
+    display: flex;
+    justify-content: center;
+
+    #table-id {
+      flex-basis: 80%;
+      text-align: center;
+      align-items: flex-start;
+
+      th {
+        background-color: #488bf4;
+        color: #fff;
+      }
+
+      tr:nth-child(odd) {
+        background-color: #FAFAFA;
+        color: #616161;
+
+        td:first-child {
+          display: flex;
+          align-self: flex-start;
+          flex-basis: 10%;
+        }
+
+        button {
+          background-color: #FAFAFA;
+          border: none;
+        }
+      }
+
+      tr:nth-child(odd):hover {
+        background-color: #bbbbbb;
+
+        button {
+          background-color: #bbbbbb;
+          border: none;
+        }
+      }
+
+      tr:nth-child(even) {
+        background-color: #E0E0E0;
+        color: #616161;
+
+        td:first-child {
+          display: flex;
+          align-self: flex-start;
+        }
+
+        button {
+          background-color: #E0E0E0;
+          border: none;
+        }
+      }
+
+      tr:nth-child(even):hover {
+        background-color: #bbbbbb;
+
+        button {
+          background-color: #bbbbbb;
+          border: none;
+        }
+      }
+    }
+  }
+}
+
+
+
