@@ -1,7 +1,9 @@
 const autoprefixer = require('autoprefixer')
 
 module.exports = {
-    entry: ['./assets/src/scss/index.scss', './assets/src/service/clanService.js', './assets/src/utils/material.js','./assets/src/model/Clan.js','./assets/src/model/Location.js','./assets/src/utils/constants.js'],
+    entry: ['./assets/src/scss/index.scss', './assets/src/service/clanService.js','./assets/src/service/locationService',
+        './assets/src/model/Clan.js','./assets/src/model/Location.js','./assets/src/utils/material.js',
+        './assets/src/utils/constants.js','./assets/src/utils/auxFunctions.js','./assets/src/fonts/Supercell-magic-webfont.generated.woff'],
     output: {
         filename: './dist/bundle.js',
     },
@@ -15,7 +17,7 @@ module.exports = {
                 use: [{
                     loader: 'file-loader',
                     options: {
-                        outputPath: '/fonts/',
+                        outputPath: '/dist/fonts/',
                     },
                 }],
             },

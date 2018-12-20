@@ -1,17 +1,19 @@
-import{Clan} from "../model/Clan.js"
-import {url} from "../utils/constants.js"
+import {Clan} from "../model/Clan.js"
+import {url, inputName, inputTag, token,urlJoan} from "../utils/constants.js"
+import {arrayCheck} from "../utils/auxFunctions.js"
+
 
 
 export async function getSpanishClans() {
     let objTract = {
         MethodName: 'sendAPI',
         params: {
-            url: 'https://api.clashroyale.com/v1/clans?locationId=57000218',
-            token: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImQxMDUxOWM0LTFkODQtNDJjNi04YzY1LWZkNjcxOTQ0ZWZkOCIsImlhdCI6MTU0NTA2MzU3Nywic3ViIjoiZGV2ZWxvcGVyL2VjNWI5MjQyLTA2NzAtMjcwZi00ZWUxLTdhMGY1MDA3YTY0MiIsInNjb3BlcyI6WyJyb3lhbGUiXSwibGltaXRzIjpbeyJ0aWVyIjoiZGV2ZWxvcGVyL3NpbHZlciIsInR5cGUiOiJ0aHJvdHRsaW5nIn0seyJjaWRycyI6WyIzNS4xOTQuNzIuMTMiXSwidHlwZSI6ImNsaWVudCJ9XX0.WMceu7E5rTjLHGUjyMgao1NOP3Yh9sann8WmRMHJ46KkQBFDnkdwo7EJ5yMxd-r9wHH3qFOA1rZb9iup_ABQkQ'
+            url: url + 'clans?locationId=57000218',
+            token: token
         }
     }
 
-    const response = await fetch("https://esliceu.codiblau.com/clashRoyale.php", {
+    const response = await fetch(urlJoan, {
         method: 'POST',
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
@@ -20,25 +22,22 @@ export async function getSpanishClans() {
     })
 
     let clans = await response.json()
-    clans = clans.items.map(clan => {
-        return new Clan(clan.tag,clan.name,clan.members,clan.clanChestLevel,clan.clanScore,clan.location.name);
-    })
-    return clans;
+    return arrayCheck(clans)
 }
 
 export async function getClanByName() {
-    let name = document.getElementById('clanName').value
+    let name = inputName.value
     name = name.split(' ').join('%20')
 
     let objTract = {
         MethodName: 'sendAPI',
         params: {
-            url: url+'clans?name='+name,
-            token: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImQxMDUxOWM0LTFkODQtNDJjNi04YzY1LWZkNjcxOTQ0ZWZkOCIsImlhdCI6MTU0NTA2MzU3Nywic3ViIjoiZGV2ZWxvcGVyL2VjNWI5MjQyLTA2NzAtMjcwZi00ZWUxLTdhMGY1MDA3YTY0MiIsInNjb3BlcyI6WyJyb3lhbGUiXSwibGltaXRzIjpbeyJ0aWVyIjoiZGV2ZWxvcGVyL3NpbHZlciIsInR5cGUiOiJ0aHJvdHRsaW5nIn0seyJjaWRycyI6WyIzNS4xOTQuNzIuMTMiXSwidHlwZSI6ImNsaWVudCJ9XX0.WMceu7E5rTjLHGUjyMgao1NOP3Yh9sann8WmRMHJ46KkQBFDnkdwo7EJ5yMxd-r9wHH3qFOA1rZb9iup_ABQkQ'
+            url: url + 'clans?name=' + name,
+            token: token
         }
     }
 
-    const response = await fetch("https://esliceu.codiblau.com/clashRoyale.php", {
+    const response = await fetch(urlJoan, {
         method: 'POST',
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
@@ -46,23 +45,49 @@ export async function getClanByName() {
         body: JSON.stringify(objTract)
     })
 
-    return await response.json()
+    let clans = await response.json()
+    return arrayCheck(clans)
+
 }
 
 export async function getClanByTag() {
-
-    let tag = document.getElementById('clanTag').value
+    let array = []
+    let tag = new URLSearchParams(document.location.search).get("tag")
+    if (tag === null) tag = inputTag.value
     tag = tag.split('#').join('%23')
-
     let objTract = {
         MethodName: 'sendAPI',
         params: {
-            url: url+'clans/'+tag,
-            token: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImQxMDUxOWM0LTFkODQtNDJjNi04YzY1LWZkNjcxOTQ0ZWZkOCIsImlhdCI6MTU0NTA2MzU3Nywic3ViIjoiZGV2ZWxvcGVyL2VjNWI5MjQyLTA2NzAtMjcwZi00ZWUxLTdhMGY1MDA3YTY0MiIsInNjb3BlcyI6WyJyb3lhbGUiXSwibGltaXRzIjpbeyJ0aWVyIjoiZGV2ZWxvcGVyL3NpbHZlciIsInR5cGUiOiJ0aHJvdHRsaW5nIn0seyJjaWRycyI6WyIzNS4xOTQuNzIuMTMiXSwidHlwZSI6ImNsaWVudCJ9XX0.WMceu7E5rTjLHGUjyMgao1NOP3Yh9sann8WmRMHJ46KkQBFDnkdwo7EJ5yMxd-r9wHH3qFOA1rZb9iup_ABQkQ'
+            url: url + 'clans/' + tag,
+            token: token
         }
     }
 
-    const response = await fetch("https://esliceu.codiblau.com/clashRoyale.php", {
+    const response = await fetch(urlJoan, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: JSON.stringify(objTract)
+    })
+    let clan = await response.json()
+    if (clan.reason !== "notFound") {
+        let clanForPush = new Clan(clan.tag, clan.name, clan.members, clan.clanChestLevel, clan.clanScore, clan.location.name, clan.description)
+        array.push(clanForPush)
+        return array
+    } else return null
+}
+
+export async function getClanByLocation(idLocation) {
+    let objTract = {
+        MethodName: 'sendAPI',
+        params: {
+            url: url + 'clans?locationId=' + idLocation,
+            token: token
+        }
+    }
+
+    const response = await fetch(urlJoan, {
         method: 'POST',
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
@@ -70,5 +95,54 @@ export async function getClanByTag() {
         body: JSON.stringify(objTract)
     })
 
-    return await response.json()
+    let clans = await response.json()
+    return arrayCheck(clans)
+}
+
+export async function getClanByLocationAndName(idLocation) {
+    let name = inputName.value
+    name = name.split(' ').join('%20')
+    let objTract = {
+        MethodName: 'sendAPI',
+        params: {
+            url: url + 'clans?name=' + name + '&locationId=' + idLocation,
+            token: token
+        }
+    }
+
+    const response = await fetch(urlJoan, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: JSON.stringify(objTract)
+    })
+
+    let clans = await response.json()
+    return arrayCheck(clans)
+}
+/*https://api.clashroyale.com/v1/clans/%23PU9R9LPQ/members*/
+
+export async function getClanMembers(tag) {
+
+    let urlTag = tag.split('#').join('%23')
+    console.log(urlTag)
+    let objTract = {
+        MethodName: 'sendAPI',
+        params: {
+            url:url + 'clans/' + urlTag + '/members',
+            token: token
+        }
+    }
+
+    const response = await fetch(urlJoan, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: JSON.stringify(objTract)
+    })
+
+    let clans = await response.json()
+    return arrayCheck(clans)
 }

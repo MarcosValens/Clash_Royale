@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="./dist/bundle.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="icon" href="./dist/images/App_Icon.png">
+</head>
+<body>
+<img src="./dist/images/logo-1.png" id="logo" alt="logo_ClashRoyale">
+<header class="mdc-top-app-bar mdc-top-app-bar--short nav">
+    <div class="mdc-top-app-bar__row">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+            <a href="#" class="material-icons mdc-top-app-bar__navigation-icon">menu</a>
+            <span class="mdc-top-app-bar__title">Clash Royale</span>
+        </section>
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+            <a href="#" class="material-icons mdc-top-app-bar__action-item" aria-label="Bookmark this page"
+               alt="Bookmark this page">bookmark</a>
+        </section>
+    </div>
+</header>
+<main>
+    <header>
+        <div class="mdc-card">
+            <div class="mdc-card__actions">
+                <div class="mdc-card__action-buttons">
+                    <div>
+                        <button class="mdc-button mdc-card__action mdc-card__action--button"></button>
+                    </div>
+                    <div>
+                        <button class="mdc-button mdc-card__action mdc-card__action--button"></button>
+                    </div>
+                    <div>
+                        <button class="mdc-button mdc-card__action mdc-card__action--button"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="mdc-card__actions">
+                <button class="mdc-button mdc-card__action mdc-card__action--button"></button>
+            </div>
+        </div>
+    </header>
+
+</main>
+<script type="module">
+    import {getClanByTag, getClanMembers} from "./assets/src/service/clanService.js"
+    import {card} from "./assets/src/utils/constants.js"
+
+    window.onload = async function () {
+        let clan = await getClanByTag()
+        console.log(card)
+        /*let players = await getClanMembers(clan[0].tag);*/
+
+        card[1].childNodes[1].children[0].children[0].innerHTML = clan[0].name
+        card[1].childNodes[1].children[1].children[0].innerHTML = clan[0].tag
+        card[1].childNodes[1].children[2].children[0].innerHTML = clan[0].country
+        card[3].children[0].innerHTML = clan[0].description
+    }
+</script>
+<script src="./dist/bundle.js" async></script>
+</body>
+</html>

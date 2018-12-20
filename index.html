@@ -52,55 +52,74 @@
     <div id="list"></div>
 </main>
 <script type="module">
-    import {getSpanishClans, getClanByName, getClanByTag} from "./assets/src/service/clanService.js"
+    import {
+        getSpanishClans,
+        getClanByName,
+        getClanByTag,
+        getClanByLocation,
+        getClanByLocationAndName
+    } from "./assets/src/service/clanService.js"
     import {getLocations} from "./assets/src/service/locationService.js"
-    import {headTable} from "./assets/src/utils/constants.js"
+    import {
+        headTable,
+        options,
+        inputs,
+        list,
+        inputName,
+        inputTag,
+        button,
+        selector
+    } from "./assets/src/utils/constants.js"
+    import {locationsFilter} from "./assets/src/utils/auxFunctions.js"
 
-    let list = document.getElementById('list')
-    let inputName = document.getElementById('clanName')
-    let inputTag = document.getElementById('clanTag')
-    let inputs = document.querySelectorAll('input')
-    let selects = document.querySelector('.mdc-list')
-
-
+    let locations
 
     (async function () {
-        let locations = await getLocations()
-        selects.innerHTML += '<li class="mdc-list-item mdc-list-item--selected" data-value="" aria-selected="true"></li>'
-        locations.forEach(function(location){
-            selects.innerHTML += '<li class="mdc-list-item" data-value="grains">'+ location.name +'</li>'
+        locations = await getLocations()
+        options.innerHTML += '<li class="mdc-list-item mdc-list-item--selected" data-value="" aria-selected="true"></li>'
+        locations.forEach(function (location) {
+            options.innerHTML += '<li class="mdc-list-item" data-value=' + location.id + '>' + location.name + '</li>'
         })
         inputs.forEach(function (input) {
             input.addEventListener("input", function () {
-                document.getElementById('search').disabled = !!(inputName.value && inputTag.value)
+                button.disabled = !!(inputName.value && inputTag.value)
             })
         })
         let clans = await getSpanishClans()
+        console.log(clans)
         inputs.innerHTML = headTable
         drawTable(clans)
 
-
     })()
-    document.getElementById('search').addEventListener('click', async function () {
-        if (inputName.value && !inputTag.value) {
+
+    button.addEventListener('click', async function () {
+        if (inputName.value && !selector.innerHTML) {
             let clanName = await getClanByName()
-            clanName.forEach(clan => {
-                document.querySelector('#list').innerHTML = headTable
-            })
-        } else if (!inputName.value && inputTag.value) {
+            checkResults(clanName)
+        } else if (inputTag.value) {
             let clanTag = await getClanByTag()
-            console.log(clanTag)
+            checkResults(clanTag)
+        } else if (!inputName.value && selector.innerHTML) {
+            let location = locationsFilter(locations)
+            let clanLocation = await getClanByLocation(location)
+            checkResults(clanLocation)
+        } else if (inputName.value && selector.innerHTML) {
+            let location = locationsFilter(locations)
+            let nameLocation = await getClanByLocationAndName(location)
+            checkResults(nameLocation)
         } else alert("Introduce un valor")
 
     })
 
-    function drawTable(clans){
-        let table = headTable;
+    function drawTable(clans) {
+        let table = headTable
         list.innerHTML = headTable
         clans.forEach(function (clan) {
+            let tag = clan.tag
+            tag = tag.split('#').join('%23')
             table += '<tr>'
-            table += '<td><button id="' + clan.name + '">'
-            table += '<img src="./dist/images/Clash%20Royale.png" alt="CrownIcon" width="25px" height="25px">'
+            table += '<td><button id="' + clan.name + '" onclick="location.href=\'clan.html?tag=' + tag + '\'">'
+            table += '<img src="./dist/images/Clash_Royale.png" alt="CrownIcon" width="25px" height="25px">'
             table += '</button>' + clan.name + '</td>'
             table += '<td>' + clan.tag + '</td>'
             table += '<td>' + clan.nMember + '</td>'
@@ -110,6 +129,12 @@
             table += '</tr>'
         })
         list.innerHTML = table
+    }
+
+    function checkResults(clan) {
+        if (clan !== null) {
+            drawTable(clan)
+        } else list.innerHTML = "SIN RESULTADOS"
     }
 </script>
 <script src="./dist/bundle.js" async></script>

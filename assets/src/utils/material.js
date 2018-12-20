@@ -1,15 +1,28 @@
-import {MDCTextField} from '@material/textfield';
-import {MDCTopAppBar} from '@material/top-app-bar/index';
-import {MDCRipple} from '@material/ripple';
-import {MDCSelect} from '@material/select';
-const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
-const topAppBarElement = document.querySelector('.mdc-top-app-bar');
-const topAppBar = new MDCTopAppBar(topAppBarElement);
-const buttonRipple = new MDCRipple(document.querySelector('.mdc-button'));
-const select = new MDCSelect(document.querySelector('.mdc-select'));
-document.querySelectorAll('.mdc-text-field').forEach(e=>{
-    new MDCTextField(e);})
+import {inputTag, button} from "./constants.js"
+import {MDCTextField} from '@material/textfield'
+import {MDCTopAppBar} from '@material/top-app-bar/index'
+import {MDCRipple} from '@material/ripple'
+import {MDCSelect} from '@material/select'
+if (document.querySelector('.mdc-text-field')) {
+    new MDCTextField(document.querySelector('.mdc-text-field'))
+    document.querySelectorAll('.mdc-text-field').forEach(e => {
+        new MDCTextField(e)
+    })
+}
+const topAppBarElement = document.querySelector('.mdc-top-app-bar')
+new MDCTopAppBar(topAppBarElement)
+new MDCRipple(document.querySelector('.mdc-button'))
+if (document.querySelector('.mdc-select')) {
+    const select = new MDCSelect(document.querySelector('.mdc-select'))
+    select.listen('MDCSelect:change', () => {
+        if (inputTag.value) {
+            inputTag.value = ""
+            button.disabled = false
+        }
+        button.name = select.value
+    })
+}
 
-select.listen('MDCSelect:change', () => {
-    alert(`Selected option at index ${select.selectedIndex} with value "${select.value}"`);
-});
+
+
+

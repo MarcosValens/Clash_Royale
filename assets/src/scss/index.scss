@@ -6,9 +6,10 @@ $mdc-theme-primary: #488bf4;
 @import "@material/menu-surface/mdc-menu-surface";
 @import "@material/menu/mdc-menu";
 @import "@material/select/mdc-select";
+@import "@material/card/mdc-card";
 @font-face {
   font-family: clashFont;
-  src: url('../../../dist/fonts/Supercell-magic-webfont.generated.woff');
+  src: url('../fonts/Supercell-magic-webfont.generated.woff');
 }
 
 .demo-width-class {
@@ -18,7 +19,7 @@ $mdc-theme-primary: #488bf4;
 
 #logo {
   position: relative;
-  left: 40%;
+  left: 42%;
   z-index: 5;
 }
 
