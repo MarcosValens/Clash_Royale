@@ -1,3 +1,5 @@
+/*EJECUTAR npm run build PARA VER LAS FUENTES CORRECTAMENTE!!!!*/
+
 import {selector} from "./constants.js"
 import {Clan} from "../model/Clan.js"
 

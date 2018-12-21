@@ -1,24 +1,35 @@
 const autoprefixer = require('autoprefixer')
 
+
 module.exports = {
-    entry: ['./assets/src/scss/index.scss', './assets/src/service/clanService.js','./assets/src/service/locationService',
-        './assets/src/model/Clan.js','./assets/src/model/Location.js','./assets/src/utils/material.js',
-        './assets/src/utils/constants.js','./assets/src/utils/auxFunctions.js','./assets/src/fonts/Supercell-magic-webfont.generated.woff'],
+    entry: ['./assets/src/utils/loader.js'],
     output: {
         filename: './dist/bundle.js',
     },
     module: {
         rules: [
             {
-                test: /^(?!.*\.generated\.ttf$).*\.ttf$/,
-                use: ['css-loader', 'fontface-loader'],
-            }, {
-                test: /\.generated.(ttf|eot|woff|woff2)$/,
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    'css-loader'
+                ]
+            },
+            {
+                test: /\.(png|jpg|gif)$/,
+                loader: 'file-loader',
+                options: {
+                    outputPath: './dist/images',
+                },
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/,
                 use: [{
                     loader: 'file-loader',
                     options: {
-                        outputPath: '/dist/fonts/',
-                    },
+                        name: 'fonts/Supercell-magic-webfont.generated.woff',
+
+                    }
                 }],
             },
             {
@@ -53,7 +64,7 @@ module.exports = {
                     presets: ['es2015'],
                     plugins: ['transform-object-assign']
                 },
-            }
+            },
         ],
     },
 }

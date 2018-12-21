@@ -1,3 +1,5 @@
+/*EJECUTAR npm run build PARA VER LAS FUENTES CORRECTAMENTE!!!!*/
+
 import {Location} from "../model/Location.js"
 import {token, url, urlJoan} from "../utils/constants.js"
 

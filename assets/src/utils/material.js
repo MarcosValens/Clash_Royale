@@ -1,3 +1,5 @@
+/*EJECUTAR npm run build PARA VER LAS FUENTES CORRECTAMENTE!!!!*/
+
 import {inputTag, button} from "./constants.js"
 import {MDCTextField} from '@material/textfield'
 import {MDCTopAppBar} from '@material/top-app-bar/index'
@@ -11,7 +13,9 @@ if (document.querySelector('.mdc-text-field')) {
 }
 const topAppBarElement = document.querySelector('.mdc-top-app-bar')
 new MDCTopAppBar(topAppBarElement)
-new MDCRipple(document.querySelector('.mdc-button'))
+if (document.querySelector('.mdc-button')){
+    new MDCRipple(document.querySelector('.mdc-button'))
+}
 if (document.querySelector('.mdc-select')) {
     const select = new MDCSelect(document.querySelector('.mdc-select'))
     select.listen('MDCSelect:change', () => {

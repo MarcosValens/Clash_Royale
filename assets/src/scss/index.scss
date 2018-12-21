@@ -1,15 +1,35 @@
+/*EJECUTAR npm run build PARA VER LAS FUENTES CORRECTAMENTE!!!!*/
 $mdc-theme-primary: #488bf4;
-@import "@material/textfield/mdc-text-field";
-@import "@material/top-app-bar/mdc-top-app-bar";
-@import "@material/button/mdc-button";
-@import "@material/list/mdc-list";
-@import "@material/menu-surface/mdc-menu-surface";
-@import "@material/menu/mdc-menu";
-@import "@material/select/mdc-select";
-@import "@material/card/mdc-card";
+@import "../../../node_modules/@material/textfield/mdc-text-field";
+@import "../../../node_modules/@material/top-app-bar/mdc-top-app-bar";
+@import "../../../node_modules/@material/button/mdc-button";
+@import "../../../node_modules/@material/list/mdc-list";
+@import "../../../node_modules/@material/menu-surface/mdc-menu-surface";
+@import "../../../node_modules/@material/menu/mdc-menu";
+@import "../../../node_modules/@material/select/mdc-select";
+@import "../../../node_modules/@material/card/mdc-card";
+@import "../../../node_modules/@material/image-list/mdc-image-list";
+@import "../../../node_modules/@material/typography/mdc-typography";
+
 @font-face {
   font-family: clashFont;
-  src: url('../fonts/Supercell-magic-webfont.generated.woff');
+  src: url('../fonts/Supercell-magic-webfont.generated.woff') format('woff');
+}
+
+.my-image-list {
+  @include mdc-image-list-standard-columns(7);
+}
+
+
+.label {
+  color: #fff;
+  background: rgba(0, 0, 0, .6);
+  padding: 8px 16px;
+  position: absolute;
+  bottom: 0;
+  width: 80%;
+  height: 15%;
+  border-radius: 0 0 150rem 150rem
 }
 
 .demo-width-class {
@@ -43,6 +63,10 @@ main {
     }
   }
 
+  img {
+    width: 25px;
+    height: 25px;
+  }
 
   #list {
     font-family: clashFont, serif;
@@ -72,6 +96,7 @@ main {
         button {
           background-color: #FAFAFA;
           border: none;
+
         }
       }
 
@@ -111,5 +136,23 @@ main {
   }
 }
 
+//player.html
+
+#member {
+  font-family: clashFont, serif;
+  display:flex;
+  color: #488bf4;
+  justify-content: flex-start;
+  margin-left: 10%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  section{
+    margin-left: 15%;
+    ul{
+      display: inline-block;
+      list-style: none;
+    }
+  }
+}
 
 

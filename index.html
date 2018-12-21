@@ -1,3 +1,5 @@
+<!--EJECUTAR npm run build PARA VER LAS FUENTES CORRECTAMENTE!!!!-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,10 +7,10 @@
     <title></title>
     <link rel="stylesheet" href="./dist/bundle.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="icon" href="./dist/images/App_Icon.png">
+    <link rel="icon" href="" id="icon">
 </head>
 <body>
-<img src="./dist/images/logo-1.png" id="logo" alt="logo_ClashRoyale">
+<img src="./assets/src/images/logo-1.png" id="logo" alt="logo_ClashRoyale">
 <header class="mdc-top-app-bar mdc-top-app-bar--short nav">
     <div class="mdc-top-app-bar__row">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
@@ -68,9 +70,10 @@
         inputName,
         inputTag,
         button,
-        selector
+        selector,
     } from "./assets/src/utils/constants.js"
     import {locationsFilter} from "./assets/src/utils/auxFunctions.js"
+
 
     let locations
 
@@ -86,10 +89,8 @@
             })
         })
         let clans = await getSpanishClans()
-        console.log(clans)
         inputs.innerHTML = headTable
         drawTable(clans)
-
     })()
 
     button.addEventListener('click', async function () {
@@ -113,13 +114,13 @@
 
     function drawTable(clans) {
         let table = headTable
-        list.innerHTML = headTable
+        list.innerHTML = table
         clans.forEach(function (clan) {
             let tag = clan.tag
             tag = tag.split('#').join('%23')
             table += '<tr>'
             table += '<td><button id="' + clan.name + '" onclick="location.href=\'clan.html?tag=' + tag + '\'">'
-            table += '<img src="./dist/images/Clash_Royale.png" alt="CrownIcon" width="25px" height="25px">'
+            table += '<img src="./assets/src/images/Clash_Royale.png" alt="CrownIcon" width="256" height="256">'
             table += '</button>' + clan.name + '</td>'
             table += '<td>' + clan.tag + '</td>'
             table += '<td>' + clan.nMember + '</td>'

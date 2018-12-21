@@ -1,8 +1,9 @@
+/*EJECUTAR npm run build PARA VER LAS FUENTES CORRECTAMENTE!!!!*/
+
 import {Clan} from "../model/Clan.js"
 import {url, inputName, inputTag, token,urlJoan} from "../utils/constants.js"
 import {arrayCheck} from "../utils/auxFunctions.js"
-
-
+import {Player} from "../model/Player.js"
 
 export async function getSpanishClans() {
     let objTract = {
@@ -121,12 +122,10 @@ export async function getClanByLocationAndName(idLocation) {
     let clans = await response.json()
     return arrayCheck(clans)
 }
-/*https://api.clashroyale.com/v1/clans/%23PU9R9LPQ/members*/
 
 export async function getClanMembers(tag) {
 
     let urlTag = tag.split('#').join('%23')
-    console.log(urlTag)
     let objTract = {
         MethodName: 'sendAPI',
         params: {
@@ -143,6 +142,8 @@ export async function getClanMembers(tag) {
         body: JSON.stringify(objTract)
     })
 
-    let clans = await response.json()
-    return arrayCheck(clans)
+    let members = await response.json()
+    members = members.items.map(member => new Player
+    (member.tag,member.name,member.role,member.trophies,member.arena.name,member.donations,member.donationsReceived))
+    return members
 }

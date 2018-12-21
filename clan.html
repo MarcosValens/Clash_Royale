@@ -1,3 +1,5 @@
+<!--EJECUTAR npm run build PARA VER LAS FUENTES CORRECTAMENTE!!!!-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,10 +7,10 @@
     <title></title>
     <link rel="stylesheet" href="./dist/bundle.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="icon" href="./dist/images/App_Icon.png">
+    <link rel="icon" href="" id="icon">
 </head>
 <body>
-<img src="./dist/images/logo-1.png" id="logo" alt="logo_ClashRoyale">
+<img src="./assets/src/images/logo-1.png" id="logo" alt="logo_ClashRoyale">
 <header class="mdc-top-app-bar mdc-top-app-bar--short nav">
     <div class="mdc-top-app-bar__row">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
@@ -42,21 +44,41 @@
             </div>
         </div>
     </header>
-
+    <div id="list"></div>
 </main>
 <script type="module">
     import {getClanByTag, getClanMembers} from "./assets/src/service/clanService.js"
-    import {card} from "./assets/src/utils/constants.js"
+    import {card,headTableMembers} from "./assets/src/utils/constants.js"
 
     window.onload = async function () {
         let clan = await getClanByTag()
-        console.log(card)
-        /*let players = await getClanMembers(clan[0].tag);*/
-
+        let members = await getClanMembers(clan[0].tag);
         card[1].childNodes[1].children[0].children[0].innerHTML = clan[0].name
         card[1].childNodes[1].children[1].children[0].innerHTML = clan[0].tag
         card[1].childNodes[1].children[2].children[0].innerHTML = clan[0].country
         card[3].children[0].innerHTML = clan[0].description
+        drawTable(members)
+    }
+
+    function drawTable(members) {
+        let table = headTableMembers
+        list.innerHTML = table
+        members.forEach(function (member) {
+            let tag = member.tag
+            tag = tag.split('#').join('%23')
+            table += '<tr>'
+            table += '<td><button id="' + member.name + '" onclick="location.href=\'player.html?tag=' + tag + '\'">'
+            table += '<img src="./assets/src/images/Clash_Royale.png" alt="CrownIcon" width="256" height="256">'
+            table += '</button>' + member.name + '</td>'
+            table += '<td>' + member.tag + '</td>'
+            table += '<td>' + member.role + '</td>'
+            table += '<td>' + member.trophies + '</td>'
+            table += '<td>' + member.arena + '</td>'
+            table += '<td>' + member.donations + '</td>'
+            table += '<td>' + member.donationsReceived + '</td>'
+            table += '</tr>'
+        })
+        list.innerHTML = table
     }
 </script>
 <script src="./dist/bundle.js" async></script>
