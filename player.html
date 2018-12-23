@@ -10,7 +10,7 @@
     <link rel="icon" href="" id="icon">
 </head>
 <body>
-<div id="logo"></div>
+<img src="" id="logo" alt="logo_ClashRoyale">
 <header class="mdc-top-app-bar mdc-top-app-bar--short nav">
     <div class="mdc-top-app-bar__row">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
@@ -24,46 +24,31 @@
     </div>
 </header>
 <main>
-
     <div id="member">
-
         <section>
-            <h3 id="name"></h3>
-            <h2 id="tag"></h2>
+            <div id="stats">
+                <h3 id="playerName"></h3>
+                <h2 id="playerTag"></h2>
+            </div>
             <ul>
-                <li>Wins</li>
-                <li>Loses</li>
+                <li id="wins">Wins</li>
+                <li id="losses">Loses</li>
             </ul>
             <ul>
-                <li id="wins"></li>
-                <li id="losses"></li>
+                <li id="winsCounter"></li>
+                <li id="lossesCounter"></li>
             </ul>
         </section>
+        <section>
+            <div>Proximos Cofres</div>
+            <table id="table-chest">
+                <tr id="chests">
+                </tr>
+            </table>
+        </section>
     </div>
-    <ul class="mdc-image-list my-image-list">
-        <li class="mdc-image-list__item">
-            <div class="mdc-image-list__image-aspect-container">
-                <img class="mdc-image-list__image" src="./assets/src/images/App_Icon.png">
-            </div>
-            <div class="mdc-image-list--with-text-protection label">
-                <span class="mdc-image-list__label">Text label</span>
-            </div>
-        </li>
-    </ul>
+    <div id="cards"></div>
 </main>
-<script type="module">
-    import {getMember} from "./assets/src/service/playerService.js"
-
-    window.onload = async function () {
-        let member = await getMember()
-        console.log(member)
-        document.querySelector('#name').innerHTML = member.name
-        document.querySelector('#tag').innerHTML = member.tag
-        document.querySelector('#wins').innerHTML = member.wins
-        document.querySelector('#losses').innerHTML = member.losses
-
-    }
-</script>
 <script src="./dist/bundle.js" async></script>
 </body>
 </html>

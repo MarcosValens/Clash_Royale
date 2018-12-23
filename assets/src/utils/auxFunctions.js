@@ -10,7 +10,7 @@ import {Clan} from "../model/Clan.js"
  */
 export function locationsFilter(locations) {
     let location = locations.filter(loc => {
-        if (loc.name === selector.innerHTML) {
+        if (loc.name === document.querySelector('.mdc-select__selected-text').innerHTML) {
             return loc
         }
     })
@@ -23,6 +23,7 @@ export function locationsFilter(locations) {
  * @returns {*} --> array of clan(s)
  */
 export function arrayCheck(clans) {
+    console.log(clans)
         clans = clans.items.map(clan => {
             return new Clan(clan.tag, clan.name, clan.members, clan.clanChestLevel, clan.clanScore, clan.location.name, clan.description)
         })

@@ -10,6 +10,7 @@ $mdc-theme-primary: #488bf4;
 @import "../../../node_modules/@material/card/mdc-card";
 @import "../../../node_modules/@material/image-list/mdc-image-list";
 @import "../../../node_modules/@material/typography/mdc-typography";
+@import "../../../node_modules/@material/icon-button/mdc-icon-button";
 
 @font-face {
   font-family: clashFont;
@@ -20,35 +21,31 @@ $mdc-theme-primary: #488bf4;
   @include mdc-image-list-standard-columns(7);
 }
 
-
-.label {
-  color: #fff;
-  background: rgba(0, 0, 0, .6);
-  padding: 8px 16px;
-  position: absolute;
-  bottom: 0;
-  width: 80%;
-  height: 15%;
-  border-radius: 0 0 150rem 150rem
-}
-
-.demo-width-class {
-  width: 400px;
-}
-
-
 #logo {
   position: relative;
   left: 42%;
   z-index: 5;
 }
 
+.clanCard {
+  flex-basis: 100%;
+  justify-content: center;
+
+  .info {
+    margin: 0 2vh;
+    font-family: Roboto, sans-serif;
+    color: $mdc-theme-primary;
+    font-size: 0.875rem;
+    font-weight: 800;
+  }
+}
+
+
 main {
-  div {
+  #container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-bottom: 3vh;
 
     #inputs {
       margin: 1vw;
@@ -57,15 +54,32 @@ main {
       justify-content: center;
       flex-wrap: wrap;
 
+      #selectLocation{
+        width: 400px;
+      }
+
       div {
         margin: 0 1vw;
+        .mdc-floating-label{
+          top: 27px
+        }
+        span{
+          top: 23px !important;
+        }
+        .mdc-text-field__input:-webkit-autofill + .mdc-floating-label {
+          top: 19px !important;
+        }
       }
     }
   }
 
-  img {
-    width: 25px;
-    height: 25px;
+  #table-id {
+    margin-top: 3vh;
+
+    img {
+      width: 25px;
+      height: 25px;
+    }
   }
 
   #list {
@@ -140,17 +154,143 @@ main {
 
 #member {
   font-family: clashFont, serif;
-  display:flex;
+  display: flex;
   color: #488bf4;
   justify-content: flex-start;
-  margin-left: 10%;
+  margin-left: 5%;
+  margin-top: 3vh;
   background-size: contain;
   background-repeat: no-repeat;
-  section{
-    margin-left: 15%;
-    ul{
-      display: inline-block;
+
+  #stats {
+    text-align: left;
+  }
+
+  section {
+    margin-left: 13%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: 20%;
+
+    table {
+      margin-top: 3vh;
+    }
+
+    div {
+      justify-content: flex-start;
+      flex-basis: 100%;
+      text-align: center;
+
+      h3 {
+        margin-top: 0;
+        flex-basis: 100%;
+        margin-bottom: 0;
+      }
+
+      h2 {
+        flex-basis: 100%;
+        margin: 0;
+      }
+    }
+
+    ul {
+
+      display: flex;
+      flex-wrap: wrap;
+      flex-basis: 45%;
       list-style: none;
+      padding: 0;
+      margin: 0;
+      align-content: flex-start;
+
+      li {
+        flex-basis: 100%;
+
+        img {
+          width: 23px;
+          height: 20px;
+          margin-right: 1vw;
+        }
+      }
+    }
+
+    td img {
+      width: 160px;
+      height: 145px;
+    }
+  }
+}
+
+#cards {
+  margin-top: 3vh;
+
+  ul {
+    justify-content: center;
+
+    li {
+      margin: 1%;
+
+      .my-card {
+        height: 235px;
+        width: 200px;
+
+
+        .mdc-card__media--square {
+          display: flex;
+          justify-content: center;
+          margin: 0;
+
+          div {
+            height: 30px;
+            width: 120px;
+            justify-content: center;
+            position: absolute;
+            bottom: 10px;
+            border-radius: 0 0 13px 13px;
+          }
+        }
+
+        .mdc-card__media--square::before {
+          margin-top: 0;
+        }
+
+        .mdc-card__actions {
+          margin: 0;
+          padding: 0;
+          flex-wrap: wrap;
+
+          i {
+            padding: 8px;
+          }
+        }
+
+        .mdc-card__action-buttons {
+          flex-basis: 100%;
+          justify-content: center;
+          flex-wrap: wrap;
+
+          .info {
+            margin: 0 2vh;
+            flex-basis: 100%;
+            font-family: Roboto, sans-serif;
+            color: $mdc-theme-primary;
+            font-size: 0.875rem;
+            font-weight: 800;
+            text-align: center;
+          }
+        }
+
+        .mdc-card__action-icons {
+          display: flex;
+          justify-content: space-around;
+          margin: 0;
+        }
+
+        img {
+          width: 138.5px;
+          height: 162.75px;
+        }
+      }
     }
   }
 }

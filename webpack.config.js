@@ -1,11 +1,16 @@
 const autoprefixer = require('autoprefixer')
+const path = require('path');
 
 
 module.exports = {
     entry: ['./assets/src/utils/loader.js'],
     output: {
-        filename: './dist/bundle.js',
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, 'dist')
     },
+    /*devServer: {
+             contentBase: './dist'
+   },*/
     module: {
         rules: [
             {
@@ -19,7 +24,7 @@ module.exports = {
                 test: /\.(png|jpg|gif)$/,
                 loader: 'file-loader',
                 options: {
-                    outputPath: './dist/images',
+                    outputPath: 'images',
                 },
             },
             {

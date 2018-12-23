@@ -1,7 +1,7 @@
 /*EJECUTAR npm run build PARA VER LAS FUENTES CORRECTAMENTE!!!!*/
 
 import {Clan} from "../model/Clan.js"
-import {url, inputName, inputTag, token,urlJoan} from "../utils/constants.js"
+import {url, inputTag, token,urlJoan} from "../utils/constants.js"
 import {arrayCheck} from "../utils/auxFunctions.js"
 import {Player} from "../model/Player.js"
 
@@ -27,7 +27,7 @@ export async function getSpanishClans() {
 }
 
 export async function getClanByName() {
-    let name = inputName.value
+    let name = document.getElementById('clanName').value
     name = name.split(' ').join('%20')
 
     let objTract = {
@@ -54,7 +54,7 @@ export async function getClanByName() {
 export async function getClanByTag() {
     let array = []
     let tag = new URLSearchParams(document.location.search).get("tag")
-    if (tag === null) tag = inputTag.value
+    if (tag === null) tag = document.getElementById('clanTag').value
     tag = tag.split('#').join('%23')
     let objTract = {
         MethodName: 'sendAPI',
@@ -101,7 +101,7 @@ export async function getClanByLocation(idLocation) {
 }
 
 export async function getClanByLocationAndName(idLocation) {
-    let name = inputName.value
+    let name = document.getElementById('clanName').value
     name = name.split(' ').join('%20')
     let objTract = {
         MethodName: 'sendAPI',
