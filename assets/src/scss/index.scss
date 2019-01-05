@@ -77,8 +77,8 @@ main {
     margin-top: 3vh;
 
     img {
-      width: 25px;
-      height: 25px;
+      width: 1.5vw;
+      height: 2.5vh;
     }
   }
 
@@ -157,6 +157,7 @@ main {
   display: flex;
   color: #488bf4;
   justify-content: flex-start;
+  align-items: flex-end;
   margin-left: 5%;
   margin-top: 3vh;
   background-size: contain;
@@ -167,10 +168,10 @@ main {
   }
 
   section {
-    margin-left: 13%;
+    margin-left: 20%;
     display: flex;
     flex-wrap: wrap;
-    flex-basis: 20%;
+    flex-basis: 25%;
 
     table {
       margin-top: 3vh;
@@ -197,7 +198,7 @@ main {
 
       display: flex;
       flex-wrap: wrap;
-      flex-basis: 45%;
+      flex-basis: 50%;
       list-style: none;
       padding: 0;
       margin: 0;
@@ -207,22 +208,34 @@ main {
         flex-basis: 100%;
 
         img {
-          width: 23px;
-          height: 20px;
+          width: 1.5vw;
+          height: 2vh;
           margin-right: 1vw;
         }
       }
     }
 
     td img {
-      width: 160px;
-      height: 145px;
+      width: 8vw;
+      height: 15vh;
+    }
+
+    ul:nth-child(3),ul:nth-child(5){
+      text-align: center;
     }
   }
+ section:nth-child(3){
+   margin-left: 5%;
+ }
 }
-
 #cards {
   margin-top: 3vh;
+
+  p {
+    font-family: clashFont, serif;
+    text-align: center;
+    color: $mdc-theme-primary;
+  }
 
   ul {
     justify-content: center;
@@ -231,8 +244,8 @@ main {
       margin: 1%;
 
       .my-card {
-        height: 235px;
-        width: 200px;
+        height: 25vh;
+        width: 10vw;
 
 
         .mdc-card__media--square {
@@ -241,12 +254,12 @@ main {
           margin: 0;
 
           div {
-            height: 30px;
-            width: 120px;
+            height: 20%;
+            width: 62%;
             justify-content: center;
             position: absolute;
-            bottom: 10px;
-            border-radius: 0 0 13px 13px;
+            bottom: 5%;
+            border-radius: 0 0 1rem 1rem;
           }
         }
 
@@ -260,7 +273,7 @@ main {
           flex-wrap: wrap;
 
           i {
-            padding: 8px;
+            padding: 5%;
           }
         }
 
@@ -287,8 +300,8 @@ main {
         }
 
         img {
-          width: 138.5px;
-          height: 162.75px;
+          width: 70%;
+          height: 100%;
         }
       }
     }

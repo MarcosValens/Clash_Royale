@@ -1,7 +1,6 @@
-/*EJECUTAR npm run build PARA VER LAS FUENTES CORRECTAMENTE!!!!*/
-
 import {selector} from "./constants.js"
 import {Clan} from "../model/Clan.js"
+import {Player} from "../model/Player.js"
 
 /**
  * locationsFilter it serves to select the chosen location through the select that is in index.html
@@ -23,9 +22,23 @@ export function locationsFilter(locations) {
  * @returns {*} --> array of clan(s)
  */
 export function arrayCheck(clans) {
-    console.log(clans)
-        clans = clans.items.map(clan => {
-            return new Clan(clan.tag, clan.name, clan.members, clan.clanChestLevel, clan.clanScore, clan.location.name, clan.description)
-        })
-        return clans
+    clans = clans.items.map(clan => {
+        return new Clan(clan.tag, clan.name, clan.members, clan.clanChestLevel, clan.clanScore, clan.location.name, clan.description)
+    })
+    return clans
+}
+
+
+export function betterPlayers(players) {
+    let trophies = new URLSearchParams(document.location.search).get("trophies")
+    return players.items.filter(player => player.trophies > trophies)
+}
+
+export function parseTag(){
+    let urlTag
+    let tag = new URLSearchParams(document.location.search).get("tag")
+    if (tag !== null) {
+        urlTag = tag.split('#').join('%23')
+    }
+    return urlTag
 }

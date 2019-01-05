@@ -14,8 +14,11 @@ import i12 from '../images/15.png'
 import i13 from '../images/16.png'
 import smileKing from '../images/kingSmile.png'
 import cryKing from '../images/CryingKing.png'
-import {getMember} from "../service/playerService.js"
+import iCardUp from '../images/ic-cardsUp.png'
+import iCardDown from '../images/ic-cardsDown.png'
 import {MDCIconToggle} from "@material/icon-toggle"
+import {getMember} from "../service/playerService.js"
+import {parseTag} from "../utils/auxFunctions.js"
 
 
 let images = [i0, i1, i2, i3, i4, i5, i6, i7, i8, i9, i10, i11, i12, i13]
@@ -27,24 +30,33 @@ if (document.getElementById('member')) {
 
 if (window.location.href.indexOf("player") !== -1) {
     window.onload = async function () {
-        let tag = new URLSearchParams(document.location.search).get("tag")
-        let urlTag = tag.split('#').join('%23')
-        let member = await getMember(urlTag)
+        let member = await getMember()
+        let urlTag = parseTag()
+        document.getElementById('mazos').addEventListener('click',function () {
+            location.href='mazos.html?trophies=' + member.trophies + '&tag=' + urlTag })
         document.getElementById('playerName').innerHTML = member.name
         document.getElementById('playerTag').innerHTML = member.tag
+        document.getElementById('role').innerHTML = member.role
         document.getElementById('winsCounter').innerHTML = member.wins
         document.getElementById('lossesCounter').innerHTML = member.losses
-        if ( document.getElementById('wins')) {
-            let img = document.createElement('img')
-            img.src = smileKing
-            document.getElementById('wins').prepend(img)
+        document.getElementById('donationsCounter').innerHTML = member.donations
+        document.getElementById('receivedCounter').innerHTML = member.donationsReceived
+        if ( document.getElementById('member')) {
+            let imgSmile = document.createElement('img')
+            let imgCry = document.createElement('img')
+            let imgCard = document.createElement('img')
+            let imgCard2 = document.createElement('img')
+            imgSmile.src = smileKing
+            document.getElementById('wins').prepend(imgSmile)
+            imgCry.src = cryKing
+            document.getElementById('losses').prepend(imgCry)
+            imgCard.src = iCardUp
+            document.getElementById('donations').prepend(imgCard)
+            imgCard2.src = iCardDown
+            document.getElementById('received').prepend(imgCard2)
         }
 
-        if (document.getElementById('losses')) {
-            let img = document.createElement('img')
-            img.src = cryKing
-            document.getElementById('losses').prepend(img)
-        }
+
         let cards = '<ul class="mdc-image-list standard-image-list mdc-image-list--with-text-protection">'
         member.cards.forEach(card => {
             cards += '<li class="mdc-image-list__item">'
@@ -61,9 +73,9 @@ if (window.location.href.indexOf("player") !== -1) {
                 '"content": "favorite"}\' data-toggle-off=\'{"label": "Add to favorites", ' +
                 '"content": "favorite_border"}\'>favorite_border</i>'
             cards += '<button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" ' +
-                'title="Share">share</button>'
+                'title="Compartir">share</button>'
             cards += '<button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" ' +
-                'title="More options">more_vert</button>'
+                'title="Otras opciones">more_vert</button>'
             cards += '</div></div></div></li>'
         })
         cards += '</ul>'

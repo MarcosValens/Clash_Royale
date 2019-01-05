@@ -1,9 +1,7 @@
-/*EJECUTAR npm run build PARA VER LAS FUENTES CORRECTAMENTE!!!!*/
-
 import {Clan} from "../model/Clan.js"
-import {url, inputTag, token,urlJoan} from "../utils/constants.js"
 import {arrayCheck} from "../utils/auxFunctions.js"
 import {Player} from "../model/Player.js"
+import {url, token,urlJoan} from "../utils/constants.js"
 
 export async function getSpanishClans() {
     let objTract = {

@@ -15,6 +15,7 @@ import {MDCSelect} from "@material/select"
 import {MDCTopAppBar} from "@material/top-app-bar/index"
 import {MDCRipple} from "@material/ripple"
 import {MDCTextField} from '@material/textfield'
+import {getBestSpainPlayers} from "../service/locationService.js"
 
 
 document.getElementById('icon').href = app
@@ -57,9 +58,11 @@ let locations
             document.getElementById('search').disabled = !!(document.getElementById('clanName').value && document.getElementById('clanTag').value)
         })
     })
-    let clans = await getSpanishClans()
-    document.querySelectorAll('input').innerHTML = headTable
-    drawTable(clans)
+    if (window.location.href.indexOf("clan") === -1 && window.location.href.indexOf("player") === -1 && window.location.href.indexOf("mazos") === -1) {
+        let clans = await getSpanishClans()
+        drawTable(clans)
+    }
+
 })()
 
 if (document.getElementById('search')) {
@@ -103,7 +106,6 @@ function drawTable(clans) {
 }
 
 function checkResults(clan) {
-    console.log(clan)
     if (clan.length > 0) {
         drawTable(clan)
     } else document.getElementById('list').innerHTML = "SIN RESULTADOS"
