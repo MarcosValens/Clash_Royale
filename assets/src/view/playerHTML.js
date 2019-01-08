@@ -32,8 +32,9 @@ if (window.location.href.indexOf("player") !== -1) {
     window.onload = async function () {
         let member = await getMember()
         let urlTag = parseTag()
-        document.getElementById('mazos').addEventListener('click',function () {
-            location.href='mazos.html?trophies=' + member.trophies + '&tag=' + urlTag })
+        document.getElementById('mazos').addEventListener('click', function () {
+            location.href = 'mazos.html?trophies=' + member.trophies + '&tag=' + urlTag
+        })
         document.getElementById('playerName').innerHTML = member.name
         document.getElementById('playerTag').innerHTML = member.tag
         document.getElementById('role').innerHTML = member.role
@@ -41,7 +42,7 @@ if (window.location.href.indexOf("player") !== -1) {
         document.getElementById('lossesCounter').innerHTML = member.losses
         document.getElementById('donationsCounter').innerHTML = member.donations
         document.getElementById('receivedCounter').innerHTML = member.donationsReceived
-        if ( document.getElementById('member')) {
+        if (document.getElementById('member')) {
             let imgSmile = document.createElement('img')
             let imgCry = document.createElement('img')
             let imgCard = document.createElement('img')

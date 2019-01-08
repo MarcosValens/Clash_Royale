@@ -1,5 +1,3 @@
-/*EJECUTAR npm run build PARA VER LAS FUENTES CORRECTAMENTE!!!!*/
-
 export function Clan(tag, name, nMember, chestLvl, score, country, description) {
     this.name = name
     this.tag = tag

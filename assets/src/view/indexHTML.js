@@ -1,6 +1,11 @@
 import app from '../images/App_Icon.png'
 import clash from '../images/Clash_Royale.png'
 import logo from '../images/logo-1.png'
+import {headTable} from "../utils/constants.js"
+import {MDCSelect} from "@material/select"
+import {MDCTopAppBar} from "@material/top-app-bar/index"
+import {MDCRipple} from "@material/ripple"
+import {MDCTextField} from '@material/textfield'
 import {
     getSpanishClans,
     getClanByName,
@@ -8,15 +13,8 @@ import {
     getClanByLocation,
     getClanByLocationAndName
 } from "../service/clanService.js"
-import {getLocations} from "../service/locationService.js"
-import {headTable} from "../utils/constants.js"
 import {locationsFilter} from "../utils/auxFunctions.js"
-import {MDCSelect} from "@material/select"
-import {MDCTopAppBar} from "@material/top-app-bar/index"
-import {MDCRipple} from "@material/ripple"
-import {MDCTextField} from '@material/textfield'
-import {getBestSpainPlayers} from "../service/locationService.js"
-
+import {getLocations} from "../service/locationService.js"
 
 document.getElementById('icon').href = app
 let locations
@@ -62,7 +60,6 @@ let locations
         let clans = await getSpanishClans()
         drawTable(clans)
     }
-
 })()
 
 if (document.getElementById('search')) {

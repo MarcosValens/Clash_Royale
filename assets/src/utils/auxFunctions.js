@@ -1,6 +1,5 @@
-import {selector} from "./constants.js"
 import {Clan} from "../model/Clan.js"
-import {Player} from "../model/Player.js"
+
 
 /**
  * locationsFilter it serves to select the chosen location through the select that is in index.html
@@ -28,13 +27,21 @@ export function arrayCheck(clans) {
     return clans
 }
 
-
+/**
+ * Filter players with more trophies than the actual player
+ * @param players
+ * @returns {*}
+ */
 export function betterPlayers(players) {
     let trophies = new URLSearchParams(document.location.search).get("trophies")
     return players.items.filter(player => player.trophies > trophies)
 }
 
-export function parseTag(){
+/**
+ * parseTag transform changes '#' for '%23', this is the ASCII code for '#'
+ * @returns {string}
+ */
+export function parseTag() {
     let urlTag
     let tag = new URLSearchParams(document.location.search).get("tag")
     if (tag !== null) {

@@ -14,6 +14,7 @@ import legendaryKing from '../images/Legendary King Chest.png'
 import draft from '../images/Draft_Chest.png'
 import challange from '../images/challenge_chest.png'
 import clanWar from '../images/Clan_War_Chest.png'
+
 export function Chest(index, name) {
     this.index = index
     this.name = name

@@ -54,18 +54,21 @@ main {
       justify-content: center;
       flex-wrap: wrap;
 
-      #selectLocation{
+      #selectLocation {
         width: 400px;
       }
 
       div {
         margin: 0 1vw;
-        .mdc-floating-label{
+
+        .mdc-floating-label {
           top: 27px
         }
-        span{
+
+        span {
           top: 23px !important;
         }
+
         .mdc-text-field__input:-webkit-autofill + .mdc-floating-label {
           top: 19px !important;
         }
@@ -220,14 +223,16 @@ main {
       height: 15vh;
     }
 
-    ul:nth-child(3),ul:nth-child(5){
+    ul:nth-child(3), ul:nth-child(5) {
       text-align: center;
     }
   }
- section:nth-child(3){
-   margin-left: 5%;
- }
+
+  section:nth-child(3) {
+    margin-left: 5%;
+  }
 }
+
 #cards {
   margin-top: 3vh;
 

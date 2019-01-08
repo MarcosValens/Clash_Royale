@@ -1,10 +1,5 @@
-/*EJECUTAR npm run build PARA VER LAS FUENTES CORRECTAMENTE!!!!*/
-
 import {Location} from "../model/Location.js"
 import {token, url, urlJoan} from "../utils/constants.js"
-import {betterPlayers} from "../utils/auxFunctions.js"
-import {Player} from "../model/Player"
-import {getBattleLogs} from "./playerService.js"
 
 export async function getLocations() {
     let objTract = {
@@ -30,7 +25,7 @@ export async function getLocations() {
     return locations
 }
 
-export async function getBestSpainPlayers(trophies) {
+export async function getBestSpainPlayers() {
     let objTract = {
         MethodName: 'sendAPI',
         params: {

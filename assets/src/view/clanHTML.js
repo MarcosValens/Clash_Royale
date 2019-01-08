@@ -1,6 +1,6 @@
 import clash from '../images/Clash_Royale.png'
-import {getClanByTag, getClanMembers} from "../service/clanService.js"
 import {headTableMembers} from "../utils/constants.js"
+import {getClanByTag, getClanMembers} from "../service/clanService.js"
 
 export let card
 if (document.querySelector('.mdc-card')) {
@@ -32,7 +32,6 @@ function drawTable(members) {
         table += '<td>' + member.tag + '</td>'
         table += '<td>' + member.role + '</td>'
         table += '<td>' + member.trophies + '</td>'
-        table += '<td>' + member.arena + '</td>'
         table += '<td>' + member.donations + '</td>'
         table += '<td>' + member.donationsReceived + '</td>'
         table += '</tr>'

@@ -12,9 +12,7 @@ if (window.location.href.indexOf("mazos") !== -1) {
         let cards = member.cards
         let bestSpainPlayers = await getBestSpainPlayers()
         let filterBetterPlayers = betterPlayers(bestSpainPlayers).map(player => new Player(player.tag, player.name, null, player.trophies, player.arena))
-        console.log(filterBetterPlayers)
         let bLogsPlayers = await getBattleLogs(filterBetterPlayers)
-        console.log(bLogsPlayers)
         let simpleBlogsArray = bLogsPlayers.flat()
         simpleBlogsArray = simpleBlogsArray.filter(bLog => bLog.trophyChange > 0)
         simpleBlogsArray.sort((a, b) => parseFloat(b.trophyChange) - parseFloat(a.trophyChange))

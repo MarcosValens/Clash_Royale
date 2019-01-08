@@ -1,6 +1,6 @@
 import {Arena} from "./Arena.js"
 
-export function Player(tag, name, role, trophies, arena, donations, donationsReceived,wins,losses,cards,chests,battleLog) {
+export function Player(tag, name, role, trophies, arena, donations, donationsReceived, wins, losses, cards, chests, battleLog) {
     this.name = name
     this.tag = tag
     this.role = role

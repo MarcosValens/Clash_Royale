@@ -1,7 +1,7 @@
 import {Clan} from "../model/Clan.js"
 import {arrayCheck} from "../utils/auxFunctions.js"
 import {Player} from "../model/Player.js"
-import {url, token,urlJoan} from "../utils/constants.js"
+import {url, token, urlJoan} from "../utils/constants.js"
 
 export async function getSpanishClans() {
     let objTract = {
@@ -127,7 +127,7 @@ export async function getClanMembers(tag) {
     let objTract = {
         MethodName: 'sendAPI',
         params: {
-            url:url + 'clans/' + urlTag + '/members',
+            url: url + 'clans/' + urlTag + '/members',
             token: token
         }
     }
@@ -142,6 +142,6 @@ export async function getClanMembers(tag) {
 
     let members = await response.json()
     members = members.items.map(member => new Player
-    (member.tag,member.name,member.role,member.trophies,member.arena.name,member.donations,member.donationsReceived))
+    (member.tag, member.name, member.role, member.trophies, member.arena.name, member.donations, member.donationsReceived))
     return members
 }
