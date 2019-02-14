@@ -81,7 +81,7 @@ main {
 
     img {
       width: 1.5vw;
-      height: 2.5vh;
+      height: 100%;
     }
   }
 
@@ -108,12 +108,16 @@ main {
           display: flex;
           align-self: flex-start;
           flex-basis: 10%;
+          justify-content: center;
         }
 
         button {
           background-color: #FAFAFA;
           border: none;
-
+          font-family: clashFont, serif;
+          color: #616161;
+          display: flex;
+          align-items: center;
         }
       }
 
@@ -133,11 +137,17 @@ main {
         td:first-child {
           display: flex;
           align-self: flex-start;
+          justify-content: center;
         }
 
         button {
           background-color: #E0E0E0;
           border: none;
+          font-family: clashFont, serif;
+          color: #616161;
+          justify-content: center;
+          display: flex;
+          align-items: center;
         }
       }
 
@@ -212,7 +222,6 @@ main {
 
         img {
           width: 1.5vw;
-          height: 2vh;
           margin-right: 1vw;
         }
       }
@@ -220,7 +229,6 @@ main {
 
     td img {
       width: 8vw;
-      height: 15vh;
     }
 
     ul:nth-child(3), ul:nth-child(5) {
@@ -249,7 +257,7 @@ main {
       margin: 1%;
 
       .my-card {
-        height: 25vh;
+        height: 100%;
         width: 10vw;
 
 

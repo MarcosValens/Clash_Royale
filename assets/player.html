@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Practica Clash Royale</title>
+    <link rel="stylesheet" href="bundle.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="icon" href="" id="icon">
+</head>
+<body>
+<img src="" id="logo" alt="logo_ClashRoyale">
+<header class="mdc-top-app-bar mdc-top-app-bar--short nav">
+    <div class="mdc-top-app-bar__row">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+            <a href="#" class="material-icons mdc-top-app-bar__navigation-icon">menu</a>
+            <span class="mdc-top-app-bar__title">Clash Royale</span>
+        </section>
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+            <a href="#" class="material-icons mdc-top-app-bar__action-item" aria-label="Bookmark this page"
+               alt="Bookmark this page">bookmark</a>
+        </section>
+    </div>
+</header>
+<main>
+    <div id="member">
+        <section>
+            <div id="stats">
+                <h2 id="playerName"></h2>
+                <h3 id="playerTag"></h3>
+                <h3 id="role"></h3>
+            </div>
+            <ul>
+                <li id="wins">Wins</li>
+                <li id="losses">Loses</li>
+            </ul>
+            <ul>
+                <li id="winsCounter"></li>
+                <li id="lossesCounter"></li>
+            </ul>
+            <ul>
+                <li id="donations">Donaciones</li>
+                <li id="received">Recividas</li>
+            </ul>
+            <ul>
+                <li id="donationsCounter"></li>
+                <li id="receivedCounter"></li>
+            </ul>
+        </section>
+        <button class="mdc-button" id="mazos">
+            <span class="mdc-button__label">Posibles Mazos</span>
+        </button>
+        <section>
+            <div>Proximos Cofres</div>
+            <table id="table-chest">
+                <tr id="chests">
+                </tr>
+            </table>
+        </section>
+    </div>
+    <div id="cards"></div>
+</main>
+<script src="bundle.js" async></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!--EJECUTAR npm run build PARA VER LAS FUENTES CORRECTAMENTE!!!!-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Practica Clash Royale</title>
+    <link rel="stylesheet" href="bundle.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="icon" href="" id="icon">
+</head>
+<body>
+<img src="" id="logo" alt="logo_ClashRoyale">
+<header class="mdc-top-app-bar mdc-top-app-bar--short nav">
+    <div class="mdc-top-app-bar__row">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+            <a href="#" class="material-icons mdc-top-app-bar__navigation-icon">menu</a>
+            <span class="mdc-top-app-bar__title">Clash Royale</span>
+        </section>
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+            <a href="#" class="material-icons mdc-top-app-bar__action-item" aria-label="Bookmark this page"
+               alt="Bookmark this page">bookmark</a>
+        </section>
+    </div>
+</header>
+<main>
+    <div id="container">
+        <div id="inputs">
+            <div class="mdc-text-field">
+                <input type="text" id="clanName" class="mdc-text-field__input">
+                <label class="mdc-floating-label" for="clanName">Nombre del Clan</label>
+                <div class="mdc-line-ripple"></div>
+            </div>
+            <div class="mdc-text-field">
+                <input type="text" id="clanTag" class="mdc-text-field__input">
+                <label class="mdc-floating-label" for="clanTag">Tag del Clan</label>
+                <div class="mdc-line-ripple"></div>
+            </div>
+            <div class="mdc-select" id="selectLocation">
+                <input type="hidden" name="enhanced-select">
+                <i class="mdc-select__dropdown-icon"></i>
+                <div class="mdc-select__selected-text"></div>
+                <div class="mdc-select__menu mdc-menu mdc-menu-surface">
+                    <ul class="mdc-list"></ul>
+                </div>
+                <span class="mdc-floating-label">País</span>
+                <div class="mdc-line-ripple"></div>
+            </div>
+            <button class="mdc-button" id="search">
+                <span class="mdc-button__label">Buscar</span>
+            </button>
+        </div>
+    </div>
+    <div id="list"></div>
+</main>
+<script src="bundle.js" async></script>
+</body>
+</html>

@@ -100,7 +100,7 @@ export async function getClanByLocation(idLocation) {
 
 export async function getClanByLocationAndName(idLocation) {
     let name = document.getElementById('clanName').value
-    name = name.split(' ').join('%20')
+    name = name.split(' ').join('%2520')
     let objTract = {
         MethodName: 'sendAPI',
         params: {

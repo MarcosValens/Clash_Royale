@@ -91,7 +91,7 @@ function drawTable(clans) {
         table += '<tr>'
         table += '<td><button onclick="location.href=\'clan.html?tag=' + tag + '\'">'
         table += '<img src="' + clash + '" alt="clanButton" width="256" height="256">'
-        table += '</button>' + clan.name + '</td>'
+        table += clan.name + '</button></td>'
         table += '<td>' + clan.tag + '</td>'
         table += '<td>' + clan.nMember + '</td>'
         table += '<td>' + clan.chestLvl + '</td>'

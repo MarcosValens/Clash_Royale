@@ -28,7 +28,7 @@ function drawTable(members) {
         table += '<tr>'
         table += '<td><button id="' + member.name + '" onclick="location.href=\'player.html?tag=' + tag + '\'">'
         table += '<img src="' + clash + '" alt="memberButton" width="256" height="256">'
-        table += '</button>' + member.name + '</td>'
+        table += member.name + '</button></td>'
         table += '<td>' + member.tag + '</td>'
         table += '<td>' + member.role + '</td>'
         table += '<td>' + member.trophies + '</td>'
